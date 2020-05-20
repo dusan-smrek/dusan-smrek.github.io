@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>WebGL Swimming Pool</title>
+  <link media="screen" href="demo.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <style>
+    * { margin: 0; padding: 0; }
+html {
+  height: 100%;
+}
+body {
+  color: #fff;
+  background-image: url(images/bg2.jpg);
+  height: 100%;
+  text-align: center;
+}
+
+body:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 18px;
+  margin-top: 6px;
+}
+p {
+  text-align: left;
+  margin-top: 20px;
+}
+a {
+  color: #ff6800;
+}
+pre {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.error {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  color: #f00;
+  padding: 5px;
+  max-width: 50%;
+}
+
+.disable {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  max-width: 50%;
+}
+
+</style>
+</head>
+
+<body>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script src="jquery.ripples.js"></script>
+  <script>
+  $(document).ready(function() {
+    try {
+      $('body').ripples({
+        resolution: 512,
+        dropRadius: 20, //px
+        perturbance: 0.04,
+      });
+      $('main').ripples({
+        resolution: 128,
+        dropRadius: 10, //px
+        perturbance: 0.04,
+      });
+    } catch (e) {
+      $('.error').show().text(e);
+    }
+
+    $('.disable').show().on('click', function() {
+      $('body, main').ripples('destroy');
+      $(this).hide();
+    });
+
+    // Automatic drops
+    setInterval(function() {
+      var $el = $('main');
+      var x = Math.random() * $el.outerWidth();
+      var y = Math.random() * $el.outerHeight();
+      var dropRadius = 20;
+      var strength = 0.04 + Math.random() * 0.04;
+
+      $el.ripples('drop', x, y, dropRadius, strength);
+    }, 400);
+  });
+  </script>
+</body>
+
+</html>
