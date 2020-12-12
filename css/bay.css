@@ -10,13 +10,13 @@ body {
   left: 0;
   height: 100%;/*356px;*/
   width: 100%;/*634px;*/
-  background-image: url("images/sea.jpg");
+  background-image: url("../images/sea.jpg");
   background-size: cover;
 }
 
 .background .water {
   position: absolute;
-  background-image: url("images/sea-map.png");
+  background-image: url("../images/sea-map.png");
   background-size: cover;
   top:0;
   left:0;
